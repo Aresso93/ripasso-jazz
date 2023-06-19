@@ -1,0 +1,216 @@
+body * {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*FIRST SECTION----------------------------------------------------------------------------------------------*/
+
+.first-section {
+    background-color: #ffcc00;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 280px 1fr 150px;
+    /*abbiamo visto dall'F12 che 280 px è la dimensione della prima colonna e che indicativamente la terza è 150, quindi quella al centro la mettiamo 1fr*/
+    grid-template-columns: 280px 1fr 50%;
+/*siccome l'ultima colonna a dx è quadrata (circa), la sua colonna avrà come dimensione la stessa height della sezione
+poi l'abbiamo modificata in 50% perché mi serviva lavorare sulla griglia*/
+    grid-template-areas: "logo . play"
+                         ". . play"
+                         "info . play";
+}
+
+.logo-img {
+    padding: 32px;
+    width: 100%;
+    /*100% così si prende tutta la dimensione della cella che occupa, poi gli ho dato del padding per centrarla un po'*/
+    grid-area: logo;
+}
+
+.play-btn {
+    grid-area: play;
+    height: 100%;
+    max-width: 100%;
+    /*con queste misure non si resiza quando lo stringo, per cui devo cambiarlo. La dimensione fissa in larghezza non è una buona idea, dunque*/
+    /*le dimensioni di tutti gli elementi ci vengono bene al 100%, perché ciò su cui lavoriamo è la dimensione della griglia, e meno possibile i suoi elementi*/
+}
+
+
+.play-info {
+    grid-area: info;
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+}
+
+.label {
+    text-transform: capitalize;
+}
+
+.artist {
+    font-weight: bold;
+    font-size: x-large;
+    margin-top: 8px;
+}
+
+.song {
+    font-size: large;
+}
+
+
+@media (max-width: 768px) {
+    .first-section {
+        display: grid;
+        grid-template-rows: 280px 1fr 150px;
+        grid-template-columns: 100%;
+        grid-template-areas: "logo" 
+                             "play" 
+                             "info";
+    }
+    .play-btn {
+        padding: 32px;
+    }
+    .logo-img {
+        max-width: 280px;
+    }
+}
+
+/*SECOND SECTION------------------------------------------------------------------------------------------------------*/
+
+.second-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(6, auto);
+    grid-template-areas: "title title circle" 
+                         ". . p1" 
+                         "p2 p3 ." 
+                         ". p4 ." 
+                         ". . p5" 
+                         "p6 p7 .";
+    gap: 32px;
+}
+
+.row {
+    border-bottom: 1px solid gray;
+    padding: 32px;
+}
+
+.center {
+    display: grid;
+    place-items: center;
+}
+
+.day {
+    font-size: 100px;
+}
+
+
+
+.p1 {
+    grid-area: p1;
+}
+
+.p2 {
+    grid-area: p2;
+}
+
+.p3 {
+    grid-area: p3;
+}
+
+.p4 {
+    grid-area: p4;
+}
+
+.p5 {
+    grid-area: p5;
+}
+
+.p6 {
+    grid-area: p6;
+}
+
+.p7 {
+    grid-area: p7;
+}
+
+.title {
+    grid-area: title;
+    font-size: 164px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 32px;
+}
+
+.circle {
+    grid-area: circle;
+    background-color: black;
+    height: 164px;
+    width: 164px;
+    border-radius: 82px;
+    /*qui sopra ho fatto un box che ha due dimensioni (quindi un quadrato) e poi gli ho dato un raggio pari alla metà delle dimensioni ed è diventato un cerchio. 
+    Questo non è un'SVG, è un div che ho arrotondato fino a renderlo un cerchio*/
+    margin: 32px;
+    justify-self: end;
+}
+
+@media (max-width: 768px) {
+    .second-section {
+        display: grid;
+        grid-template-rows: repeat(8, auto);
+        grid-template-columns: 100%;
+        grid-template-areas: "title" "p1" "p2" "p3" "p5" "p6" "p7";
+       
+    }
+
+}
+/*LAST SECTION-----------------------------------------------------------------*/
+
+.last-section {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto auto;
+}
+
+.top-link {
+    display:inline-block;
+    width: 60%;
+}
+
+.mouth {
+    width: 50vw;
+    height: 50vw;
+    background-color: #660099;
+}
+
+.mouth-img {
+    width: 60%;
+}
+
+.arrow {
+    width: 50vw;
+    height: 50vw;
+    background-color: #ff3333;
+}
+
+.arrow-img {
+    width: 100%;
+}
+
+.arrow-img:hover {
+    animation: arrow-rotation 0.5s linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes arrow-rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(45deg);
+    }
+}
